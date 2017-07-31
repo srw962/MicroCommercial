@@ -3,7 +3,7 @@
     <h2>Realtime chat</h2>
     <h4>(open it in another browser window)</h4>
 
-    <el-form labelPosition="right" label-width="80px">
+    <el-form labelPosition="right" label-width="80px" style="width:401px;">
       <el-form-item label="Author:">
         <el-input v-model="author"></el-input>
       </el-form-item>
