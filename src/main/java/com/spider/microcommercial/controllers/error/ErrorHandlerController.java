@@ -14,25 +14,25 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ErrorHandlerController {
-  private Logger logger = LoggerFactory.getLogger(ErrorHandlerController.class);
+    private Logger logger = LoggerFactory.getLogger(ErrorHandlerController.class);
 
-  @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
-  public void procesHttpMediaTypeNotAcceptableException(HttpMediaTypeNotAcceptableException ex) {
-    logger.debug(ex.getMessage(), ex);
-  }
+    @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
+    public void procesHttpMediaTypeNotAcceptableException(HttpMediaTypeNotAcceptableException ex) {
+        logger.debug(ex.getMessage(), ex);
+    }
 
-  @ExceptionHandler(ClientAbortException.class)
-  public void processClientAbortException(ClientAbortException ex) {
-    logger.debug(ex.getMessage(), ex);
-    logger.debug("client disconected");
-  }
+    @ExceptionHandler(ClientAbortException.class)
+    public void processClientAbortException(ClientAbortException ex) {
+        logger.debug(ex.getMessage(), ex);
+        logger.debug("client disconected");
+    }
 
-  @ExceptionHandler(Exception.class)
-  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  @ResponseBody
-  public ServerErrorDTO processException(Exception ex) {
-    logger.error(ex.getMessage(), ex);
-    return new ServerErrorDTO(ex.getClass().getCanonicalName(), ex.getMessage(), Lists.newArrayList());
-  }
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ServerErrorDTO processException(Exception ex) {
+        logger.error(ex.getMessage(), ex);
+        return new ServerErrorDTO(ex.getClass().getCanonicalName(), ex.getMessage(), Lists.newArrayList());
+    }
 
 }

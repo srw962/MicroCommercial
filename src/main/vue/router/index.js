@@ -7,18 +7,18 @@ import Counter from './../components/counter'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
-  routes: [{
-    path: '/',
-    name: 'Hello',
-    component: Hello
-  }, {
-    path: '/chat',
-    name: 'Chat',
-    component: Chat
-  }, {
-    path: '/counter',
-    name: 'Counter',
-    component: Counter
-  }]
+    mode: 'history',
+    routes: [{
+        path: '/',
+        name: 'Hello',
+        component: Hello
+    }, {
+        path: '/chat',
+        name: 'Chat',
+        component: Chat
+    }, {
+        path: '/counter',
+        name: 'Counter',
+        component: Counter
+    }]
 })

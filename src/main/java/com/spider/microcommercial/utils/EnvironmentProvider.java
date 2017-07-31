@@ -9,20 +9,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class EnvironmentProvider implements EnvironmentAware {
 
-  private static Environment environment;
+    private static Environment environment;
 
-  @Cacheable("EnvironmentProvider.isProduction")
-  public Boolean isProduction() {
-    return environment.acceptsProfiles(Profiles.PROD.getProfileName());
-  }
+    @Cacheable("EnvironmentProvider.isProduction")
+    public Boolean isProduction() {
+        return environment.acceptsProfiles(Profiles.PROD.getProfileName());
+    }
 
-  @Cacheable("EnvironmentProvider.isDevelopment")
-  public Boolean isDevelopment() {
-    return environment.acceptsProfiles(Profiles.DEV.getProfileName());
-  }
+    @Cacheable("EnvironmentProvider.isDevelopment")
+    public Boolean isDevelopment() {
+        return environment.acceptsProfiles(Profiles.DEV.getProfileName());
+    }
 
-  @Override
-  public void setEnvironment(Environment environment) {
-    EnvironmentProvider.environment = environment;
-  }
+    @Override
+    public void setEnvironment(Environment environment) {
+        EnvironmentProvider.environment = environment;
+    }
 }

@@ -12,22 +12,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class DefaultController {
-  @Autowired
-  EnvironmentProvider environmentProvider;
+    @Autowired
+    EnvironmentProvider environmentProvider;
 
-  @ResponseStatus(HttpStatus.OK)
-  @RequestMapping("/")
-  public ModelAndView index() {
-    if (environmentProvider.isProduction()) {
-      return new ModelAndView("forward://dist/index.html");
-    } else {
-      return new ModelAndView("forward://index.html");
+    @ResponseStatus(HttpStatus.OK)
+    @RequestMapping("/")
+    public ModelAndView index() {
+        if (environmentProvider.isProduction()) {
+            return new ModelAndView("forward://dist/index.html");
+        } else {
+            return new ModelAndView("forward://index.html");
+        }
     }
-  }
 
-  @RequestMapping("/home")
-  public String home(Model model) {
-    model.addAttribute("msg", "Hello, World");
-    return "index";
-  }
+    @RequestMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("msg", "Hello, World");
+        return "index";
+    }
 }

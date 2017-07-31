@@ -19,35 +19,35 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/rest/chat")
 public class ChatController {
-  private Logger logger = LoggerFactory.getLogger(ChatController.class);
+    private Logger logger = LoggerFactory.getLogger(ChatController.class);
 
-  private final List<SseEmitter> sseEmitters = Collections.synchronizedList(new ArrayList<>());
+    private final List<SseEmitter> sseEmitters = Collections.synchronizedList(new ArrayList<>());
 
-  @RequestMapping(path = "/post", method = RequestMethod.POST, produces = "application/json")
-  @ResponseBody
-  public ChatMessage jsonCreate(@RequestBody ChatMessage chatMessage) throws IOException {
-    logger.info("Message received -> resending to " + sseEmitters.size() + " client(s)");
-    synchronized (sseEmitters) {
-      for (SseEmitter sseEmitter : sseEmitters) {
-        sseEmitter.send(chatMessage, MediaType.APPLICATION_JSON);
-      }
-    }
-    return chatMessage;
-  }
-
-  @RequestMapping("/sse/updates")
-  public ResponseEntity<SseEmitter> subscribeUpdates() {
-    SseEmitter sseEmitter = new SseEmitter(TimeUnit.MINUTES.toMillis(1));
-    synchronized (sseEmitters) {
-      this.sseEmitters.add(sseEmitter);
-      logger.info("Client connected");
-      sseEmitter.onCompletion(() -> {
+    @RequestMapping(path = "/post", method = RequestMethod.POST, produces = "application/json")
+    @ResponseBody
+    public ChatMessage jsonCreate(@RequestBody ChatMessage chatMessage) throws IOException {
+        logger.info("Message received -> resending to " + sseEmitters.size() + " client(s)");
         synchronized (sseEmitters) {
-          sseEmitters.remove(sseEmitter);
-          logger.info("Client disconnected");
+            for (SseEmitter sseEmitter : sseEmitters) {
+                sseEmitter.send(chatMessage, MediaType.APPLICATION_JSON);
+            }
         }
-      });
+        return chatMessage;
     }
-    return ResponseEntity.ok(sseEmitter);
-  }
+
+    @RequestMapping("/sse/updates")
+    public ResponseEntity<SseEmitter> subscribeUpdates() {
+        SseEmitter sseEmitter = new SseEmitter(TimeUnit.MINUTES.toMillis(1));
+        synchronized (sseEmitters) {
+            this.sseEmitters.add(sseEmitter);
+            logger.info("Client connected");
+            sseEmitter.onCompletion(() -> {
+                synchronized (sseEmitters) {
+                    sseEmitters.remove(sseEmitter);
+                    logger.info("Client disconnected");
+                }
+            });
+        }
+        return ResponseEntity.ok(sseEmitter);
+    }
 }

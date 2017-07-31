@@ -14,34 +14,34 @@ import java.util.List;
 @RequestMapping("/rest")
 public class SampleRestController {
 
-  @RequestMapping("/test")
-  public List<String> test() {
-    return Lists.newArrayList("Vue.js", "is", "great");
-  }
-
-  @RequestMapping("/fail")
-  public List<String> fail() {
-    throw new RuntimeException("method failed");
-  }
-
-  @RequestMapping("/user/{userId}/posts")
-  public List<UserPost> userPosts(@PathVariable("userId") Long userId) {
-    List<UserPost> posts = Lists.newArrayList();
-    for (long i = 1; i <= 8; i++) {
-      posts.add(new UserPost(i, "Post #" + i + " of user " + userId, "sample content #" + i, LocalDateTime.now()));
+    @RequestMapping("/test")
+    public List<String> test() {
+        return Lists.newArrayList("Vue.js", "is", "great");
     }
-    return posts;
-  }
 
-  @RequestMapping("/user/{userId}/settings")
-  public List<String> userSettings(@PathVariable("userId") Long userId) throws InterruptedException {
-    //Don't do that at home
-    Thread.currentThread().sleep(1000);
-
-    List<String> settings = Lists.newArrayList();
-    for (int i = 0; i < 10; i++) {
-      settings.add("Setting #" + i + " of user " + userId);
+    @RequestMapping("/fail")
+    public List<String> fail() {
+        throw new RuntimeException("method failed");
     }
-    return settings;
-  }
+
+    @RequestMapping("/user/{userId}/posts")
+    public List<UserPost> userPosts(@PathVariable("userId") Long userId) {
+        List<UserPost> posts = Lists.newArrayList();
+        for (long i = 1; i <= 8; i++) {
+            posts.add(new UserPost(i, "Post #" + i + " of user " + userId, "sample content #" + i, LocalDateTime.now()));
+        }
+        return posts;
+    }
+
+    @RequestMapping("/user/{userId}/settings")
+    public List<String> userSettings(@PathVariable("userId") Long userId) throws InterruptedException {
+        //Don't do that at home
+        Thread.currentThread().sleep(1000);
+
+        List<String> settings = Lists.newArrayList();
+        for (int i = 0; i < 10; i++) {
+            settings.add("Setting #" + i + " of user " + userId);
+        }
+        return settings;
+    }
 }

@@ -12,16 +12,16 @@ import org.springframework.http.HttpStatus;
 @EnableCaching
 public class MicroCommercialApplication {
 
-  @Bean
-  public EmbeddedServletContainerCustomizer containerCustomizer() {
+    @Bean
+    public EmbeddedServletContainerCustomizer containerCustomizer() {
 
-    return (container -> {
-      ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/");
-      container.addErrorPages(error404Page);
-    });
-  }
+        return (container -> {
+            ErrorPage error404Page = new ErrorPage(HttpStatus.NOT_FOUND, "/");
+            container.addErrorPages(error404Page);
+        });
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(MicroCommercialApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MicroCommercialApplication.class, args);
+    }
 }
