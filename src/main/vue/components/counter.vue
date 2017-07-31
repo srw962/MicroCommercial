@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="hello" style="width: 400px;">
     <h1>{{ msg }}</h1>
 
     <p>Counter: {{count}}</p>

@@ -5,7 +5,7 @@
         <img src="./assets/logo.png" style="width:32px;height:32px;">
       </div>
 
-      <div style="left:32px;float:right;">
+      <div style="left:32px;float:left;">
         <el-menu theme="dark"
                  :default-active="activeIndex"
                  class="el-menu-demo"
@@ -22,7 +22,11 @@
       <div style="clear:both;line-height:0;height:0;font-size:0;overflow:hidden;"></div>
     </div>
 
-    <router-view></router-view>
+    <transition mode="out-in">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 

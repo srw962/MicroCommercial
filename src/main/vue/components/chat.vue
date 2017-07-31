@@ -1,9 +1,9 @@
 <template>
-  <div class="chat">
+  <div class="chat" style="width:500px;">
     <h2>Realtime chat</h2>
     <h4>(open it in another browser window)</h4>
 
-    <el-form labelPosition="right" label-width="80px" style="width:401px;">
+    <el-form labelPosition="right" label-width="80px">
       <el-form-item label="Author:">
         <el-input v-model="author"></el-input>
       </el-form-item>
@@ -17,7 +17,7 @@
 
     <br/>
 
-    <el-table :data="messages" border style="width: 401px">
+    <el-table :data="messages" border>
       <el-table-column
         prop="author"
         label="author"
