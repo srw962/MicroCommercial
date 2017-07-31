@@ -48,6 +48,6 @@ public class ChatController {
         }
       });
     }
-    return new ResponseEntity(sseEmitter, HttpStatus.OK);
+    return ResponseEntity.ok(sseEmitter);
   }
 }

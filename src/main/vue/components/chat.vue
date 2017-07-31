@@ -3,13 +3,6 @@
     <h2>Realtime chat</h2>
     <h4>(open it in another browser window)</h4>
 
-    <table style="width: 100%">
-      <tr v-for="m in messages">
-        <td class="label label-pill label-default" width="20%">{{ m.author }}</td>
-        <td class="label label-success" width="80%">{{ m.message }}</td>
-      </tr>
-    </table>
-
     <el-form labelPosition="right" label-width="80px">
       <el-form-item label="Author:">
         <el-input v-model="author"></el-input>
@@ -21,13 +14,26 @@
         <el-button type="primary" :disabled="!message || !author" @click="postMessage">Post</el-button>
       </el-form-item>
     </el-form>
+
+    <br/>
+
+    <el-table :data="messages" border style="width: 401px">
+      <el-table-column
+        prop="author"
+        label="author"
+        width="100">
+      </el-table-column>
+      <el-table-column
+        prop="message"
+        label="message"
+        width="300">
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-  import jQuery from "jquery"
-
-  var $ = window.$ = window.jQuery = jQuery
+  import axios from 'axios';
 
   export default {
     name: 'chat',
@@ -50,7 +56,6 @@
 //      };
 
       eventSource.addEventListener("message", function(e){
-        console.log("message");
         var msg = JSON.parse(e.data);
         console.log(e);
         self.messages.push(msg);
@@ -60,20 +65,14 @@
       postMessage: function () {
         var self = this;
 
-        $.ajax({
-          url: "/rest/chat/post",
-          type: "post",
-          dataType: "json",
-          data: JSON.stringify({
-            author: self.author,
-            message: self.message
-          }),
-          contentType: "application/json",
-          success: function (data) {
-
-          }
-        }).then(function () {
+        axios.post('/rest/chat/post', {
+          author: self.author,
+          message: self.message
+        }).then(response => {
+//          self.message = response.data.author;
           self.message = 'Send next message';
+        }).catch(error => {
+          self.message = 'Error: ' + error.response.status;
         });
       }
     }
