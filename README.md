@@ -21,6 +21,7 @@
 server will start on [http://localhost:8080/](http://localhost:8080/)
 
 ## Run in development mode
+* Install node.js v6.11.1 or above
 
 ``` bash
 # compile and start in development mode
