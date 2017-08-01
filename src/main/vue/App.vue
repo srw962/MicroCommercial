@@ -10,13 +10,12 @@
                          :default-active="activeIndex"
                          class="el-menu-demo"
                          mode="horizontal"
-                         router="true"
-                         @select="handleSelect">
-                    <el-menu-item index="1" route="/">Home</el-menu-item>
-                    <el-menu-item index="2" route="/counter">Counter</el-menu-item>
-                    <el-menu-item index="3" route="/chat">Chat</el-menu-item>
-                    <el-menu-item index="4"><a href="http://element.eleme.io" target="_blank">element-ui</a>
-                    </el-menu-item>
+                         :router="true">
+                    <el-menu-item index="1" :route="{ name:'Hello' }">Home</el-menu-item>
+                    <el-menu-item index="2" :route="{ name: 'Counter' }">Counter</el-menu-item>
+                    <el-menu-item index="3" :route="{ name: 'Chat' }">Chat</el-menu-item>
+                    <el-menu-item index="4" :route="{ name: 'foo', params: { src: 'http://element.eleme.io' } }">element-ui</el-menu-item>
+                    <el-menu-item index="5" :route="{ name: 'foo', params: { src: 'http://www.baidu.com' } }">baidu</el-menu-item>
                 </el-menu>
             </div>
 
@@ -35,7 +34,7 @@
     export default {
         name: 'app',
         data() {
-            return {activeIndex: 1};
+            return {activeIndex: "1"};
         }
     }
 </script>
