@@ -8,22 +8,22 @@ import Foo from './../components/foo'
 Vue.use(Router)
 
 export default new Router({
-    mode: 'history',
-    routes: [{
-        path: '/',
-        name: 'Hello',
-        component: Hello
-    }, {
-        path: '/chat',
-        name: 'Chat',
-        component: Chat
-    }, {
-        path: '/counter',
-        name: 'Counter',
-        component: Counter
-    }, {
-        path: '/foo/:src',
-        name: 'foo',
-        component: Foo
-    }]
+  mode: 'history',
+  routes: [{
+    path: '/',
+    name: 'Hello',
+    component: Hello
+  }, {
+    path: '/chat',
+    name: 'Chat',
+    component: Chat
+  }, {
+    path: '/counter',
+    name: 'Counter',
+    component: Counter
+  }, {
+    path: '/foo/:src',
+    name: 'foo',
+    component: Foo
+  }]
 })
