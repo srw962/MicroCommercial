@@ -7,7 +7,6 @@
 * Vue.js 2
 * element-ui
 * Hot module replacement (from webpack dev server and from java)
-* vue-router for routing (working well with spring router)
 * development and production profiles
 * fully automated maven workflow
 
@@ -47,7 +46,7 @@ Hot module replacement will be available from both servers
 ├ node_modules            # node modules
 ├ target                  # compiled java sources
 ├ src                     # sources
-│  ├ main                 
+│  ├ main
 │  │  ├ java                           # java sources
 │  │  ├ vue                            # javascript sources
 │  │  └ resources                      # resources
@@ -59,12 +58,12 @@ Hot module replacement will be available from both servers
 │  │     └ application.properties      # spring boot configuration properties
 │  └ test                       # test sources
 │      ├ java                   # java tests
-│      └ vuejs                  # vue.js tests
+│      └ vue                    # vue.js tests
 ├ .babelrc                 # babel configuration
 ├ .eslintrc                # eslint configuration
 ├ .gitignore               # gitignore
 ├ package.json             # node configuration
-├ pom.xml                  # maven configuration 
+├ pom.xml                  # maven configuration
 ├ mvnw                     # maven linux wrapper
 ├ mvnw.cmd                 # maven windows wrapper
 ├ npm                      # local npm linux wrapper
