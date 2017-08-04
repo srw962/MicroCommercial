@@ -22,7 +22,7 @@
               <el-menu-item :index="indexParent"
                             @click.native="selected(item.moduleName,item.moduleId)">
                 <i class="el-icon-message"></i>
-                <span slot="title">{{item.title}}</span>
+                {{item.title}}
               </el-menu-item>
             </template>
           </el-menu>
