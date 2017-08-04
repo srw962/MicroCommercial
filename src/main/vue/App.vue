@@ -22,7 +22,7 @@
               <el-menu-item :index="indexParent"
                             @click.native="selected(item.moduleName,item.moduleId)">
                 <i class="el-icon-message"></i>
-                <span slot="title">{{item.moduleName}}</span>
+                <span slot="title">{{item.title}}</span>
               </el-menu-item>
             </template>
           </el-menu>
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   import homePage from './components/hello';//homePage;
 
   import Chat from './components/chat';
@@ -65,16 +67,7 @@
           btns: {}
         }],
         tab: '首页',
-        menu: [{
-          moduleName: "Chat",
-          moduleId: 1
-        }, {
-          moduleName: "Counter",
-          moduleId: 2
-        }, {
-          moduleName: "Foo",
-          moduleId: 3
-        }],
+        menu: [],
         menuComponent: {
           '首页': 'homePage',
           'Chat': 'chat',
@@ -86,6 +79,13 @@
       }
     },
     beforeCreate() {
+      axios.post('/getMenu', {
+        userName: this.userName
+      }).then(response => {
+        this.menu = response.data;
+      }).catch(error => {
+        //self.message = 'Error: ' + error.response.status;
+      });
     },
     mounted() {
     },
@@ -120,7 +120,7 @@
         for (let [index, item] of this.tabs.entries()) {
           if (item.title == tab) {
             this.tab = tab;
-            return
+            return;
           }
         }
         var content = this.menuComponent[tab];
