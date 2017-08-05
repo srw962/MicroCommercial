@@ -19,7 +19,7 @@
           <!-- 默认选中哪个菜单 -- default-active="0-0" -->
           <el-menu class="menu" @select="handleselect" theme="dark" unique-opened>
             <template v-for="(item,indexParent) in menu">
-              <el-menu-item :index="indexParent"
+              <el-menu-item :index="indexParent.toString()"
                             @click.native="selected(item.moduleName,item.moduleId)">
                 <i class="el-icon-message"></i>
                 {{item.title}}
@@ -49,6 +49,7 @@
 
 <script>
   import axios from 'axios';
+  var qs = require('qs');
 
   import homePage from './components/hello';//homePage;
 
@@ -79,13 +80,22 @@
       }
     },
     beforeCreate() {
-      axios.post('/getMenu', {
-        userName: this.userName
-      }).then(response => {
+      // beforeCreate 事件时仅仅创建了vue对象，里面数据并未设置
+      // 所以this.userName没有值
+      console.log("beforeCreate: ", this.userName);
+
+      // 默认axios使用json传给后台
+      // 如果要传application/x-www-form-urlencoded 到后台，使用qs.stringify(object)
+      axios.post('/getMenu', qs.stringify({
+        userName: 'srw962' // this.userName
+      })).then(response => {
         this.menu = response.data;
       }).catch(error => {
         //self.message = 'Error: ' + error.response.status;
       });
+    },
+    created() {
+      console.log("created: " + this.userName);
     },
     mounted() {
     },
