@@ -10,6 +10,7 @@ function resolve(dir) {
 module.exports = {
   entry: {
     app: './src/main/vue/main.js'
+    //app_router: './src/main/vue/main_router.js'
   },
   output: {
     path: config.build.assetsRoot,

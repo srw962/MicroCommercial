@@ -86,7 +86,7 @@
 
       // 默认axios使用json传给后台
       // 如果要传application/x-www-form-urlencoded 到后台，使用qs.stringify(object)
-      axios.post('/getMenu', qs.stringify({
+      axios.post('/rest/user/getMenu', qs.stringify({
         userName: 'srw962' // this.userName
       })).then(response => {
         this.menu = response.data;
