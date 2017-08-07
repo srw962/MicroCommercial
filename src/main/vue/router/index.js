@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from './../components/hello'
 import Chat from './../components/chat'
 import Counter from './../components/counter'
+import AjaxTest from './../components/ajaxTest'
 import Foo from './../components/foo'
 
 Vue.use(Router)
@@ -20,6 +21,10 @@ export default new Router({
     path: '/counter',
     name: 'Counter',
     component: Counter
+  }, {
+    path: '/ajaxTest',
+    name: 'AjaxTest',
+    component: AjaxTest
   }, {
     path: '/foo/:src',
     name: 'foo',

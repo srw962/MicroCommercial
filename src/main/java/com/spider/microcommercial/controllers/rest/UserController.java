@@ -32,13 +32,19 @@ public class UserController {
         counterMenu.setModuleName("Counter");
         counterMenu.setTitle("Counter");
 
+        MenuItem ajaxMenu = new MenuItem();
+        ajaxMenu.setModuleId(13);
+        ajaxMenu.setModuleName("AjaxTest");
+        ajaxMenu.setTitle("AjaxTest");
+
         MenuItem fooMenu = new MenuItem();
-        fooMenu.setModuleId(13);
+        fooMenu.setModuleId(14);
         fooMenu.setModuleName("Foo");
         fooMenu.setTitle("Foo");
 
         topMenu.add(chatMenu);
         topMenu.add(counterMenu);
+        topMenu.add(ajaxMenu);
         topMenu.add(fooMenu);
 
         return topMenu;

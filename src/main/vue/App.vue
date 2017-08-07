@@ -55,6 +55,7 @@
 
   import Chat from './components/chat';
   import Counter from './components/counter';
+  import AjaxTest from './components/ajaxTest';
   import Foo from './components/foo';
 
   export default {
@@ -73,6 +74,7 @@
           '首页': 'homePage',
           'Chat': 'chat',
           'Counter': 'counter',
+          'AjaxTest': 'ajaxTest',
           'Foo': 'foo'
         },
         openedElement: [],
@@ -203,6 +205,7 @@
 
       chat: Chat,
       counter: Counter,
+      ajaxTest: AjaxTest,
       foo: Foo
     }
   }
