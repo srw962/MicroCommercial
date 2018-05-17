@@ -8,7 +8,6 @@
 * element-ui
 * Hot module replacement (from webpack dev server and from java)
 * development and production profiles
-* fully automated maven workflow
 
 ## Run in production mode
 
